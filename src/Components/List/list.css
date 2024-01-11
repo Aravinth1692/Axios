@@ -1,0 +1,19 @@
+.user_container{
+    margin: 1rem 0;
+    padding: 1rem ;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 50%;
+    margin-left: 22%;
+    z-index: 10000 !important;
+}
+.user{
+    margin:1rem;
+    padding: 1rem;
+    border:2px solid brown;
+    border-radius: 10px;
+    
+}
+.stickey{
+    position: sticky;
+}
