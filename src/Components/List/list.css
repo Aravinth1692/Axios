@@ -1,32 +1,155 @@
-.user_container{
+.user_container {
     margin: 1rem 0;
-    padding: 1rem ;
-    border: 2px solid black;
+    padding: 1rem;
+    border: 2px solid #818589;
     border-radius: 10px;
-    width: 50%;
     margin-left: 22%;
     z-index: 10000 !important;
 }
-.user{
-    margin:1rem;
+
+.user {
+    margin: 1rem;
     padding: 1rem;
-    border:2px solid brown;
+    border: 2px solid #A9A9A9;
     border-radius: 10px;
-    
+
 }
-.stickey{
-    position: sticky;
+.brnStyle{
+    width: 12%;
+    height: 27px;
+    border-radius: 6px;
+    cursor: pointer;
 }
-.marginrgt10{
+.editClr{
+    border: 1px solid #89CFF0;
+    background: #89CFF0;
+    color: white;
+}
+.marginRight{
     margin-right: 10px;
 }
-.display{
-    display: flex;
-    flex-direction: row;
+.deleteClr{
+    border: 1px solid #FAA0A0;
+    background: #FAA0A0;
+    color: white;
 }
-.textAlign{
-text-align: end;
+.submitClr{
+    border: 1px solid #50C878;
+    background: #50C878;
+    color: white;
 }
-.txtjustify{
+.createClr{
+    border: 2px solid #228b22;
+    background: white;
+    color: #228b22;
+    border-radius: 16px;
+    width: 4%;
+    font-size: 20px;
+    margin-left: 13px;
+}
+.padding10{
+    padding: 10px;
+}
+.txtWrap {
+    word-wrap: break-word;
+}
+
+.stickey {
+    position: sticky;
+}
+
+.marginrgt10 {
+    margin-right: 10px;
+}
+
+.txtjustify {
     text-align: justify;
+}
+
+@media (min-width:320px) {
+    .display {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .textAlign {
+        text-align: justify;
+    }
+
+    .cardWidth {
+        width: 80%;
+    }
+}
+
+@media (min-width:481px) {
+    .display {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .textAlign {
+        text-align: justify;
+    }
+
+    .cardWidth {
+        width: 80%;
+    }
+}
+
+@media (min-width:641px) {
+    .display {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .textAlign {
+        text-align: justify;
+    }
+
+    .cardWidth {
+        width: 80%;
+    }
+}
+
+@media (min-width:961px) {
+    .display {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .textAlign {
+        text-align: end;
+    }
+
+    .cardWidth {
+        width: 57%;
+    }
+}
+
+@media (min-width:1025px) {
+    .display {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .textAlign {
+        text-align: end;
+    }
+    .cardWidth{
+        width: 57%;
+    }
+}
+
+@media (min-width:1281px) {
+    .display {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .textAlign {
+        text-align: end;
+    }
+    .cardWidth{
+        width: 57%;
+    }
 }

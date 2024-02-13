@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getUserDetails, updateUserDetails } from '../../Services/usingAxios';
 import './list.css';
-import Card from "@material-ui/core/Card";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ListPage = () => {
     const [users, setUsers] = useState([]);
@@ -13,6 +14,7 @@ const ListPage = () => {
     const [companynameusers, setcompanynameUsers] = useState([]);
     const [mailidusers, setmailidUsers] = useState([]);
     const [websiteusers, setwebsiteUsers] = useState([]);
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const getallUserDetails = async () => {
         const userData = await getUserDetails();
@@ -22,7 +24,17 @@ const ListPage = () => {
         seteditUsers('editVal')
         setcurrentUsers(val)
     }
+      const closeModal = () => {
+        setModalOpen(false);
+      };
+    const notify = () => toast.error("Please Fill All Details");
+    const Successnotify = () => toast.success("Update SUccessfully");
     const submitdata = async (val, Data) => {
+        if(nameusers === "" || username === "" || mailidusers === "" ||
+            phnumusers === "" || websiteusers === "" ||  companynameusers === "" ) {
+                notify();
+                return ;
+            }
         const payload = {
             id: val,
             name: nameusers.length === 0 ? Data.name : nameusers,
@@ -51,12 +63,15 @@ const ListPage = () => {
             });
             seteditUsers('')
             setUsers(updatedList)
-
+            Successnotify()
         }
 
     }
+    const createUser = async () => {
+        setModalOpen(true);
+    }
     const deleteUser = async(ID) => {
-        const Deletedata = users.filter((val)=>val.id != ID)
+        const Deletedata = users.filter((val)=>val.id !== ID)
         setUsers(Deletedata)
     }
 
@@ -69,52 +84,82 @@ const ListPage = () => {
     }, [users]);
 
     return <div>
-
-        <div className="user_container">
-            <b>Total User : </b> {users.length}
+ <ToastContainer />
+        <div className="user_container cardWidth">
+            <b>Total Users : </b> {users.length}
+            {/* <button className="brnStyle createClr" title="Create" onClick={(event) => { createUser() }}>
+                        +
+                    </button> */}
             {users.map((item, index) =>
                 <div className="user" key={index}>
                     <div className="display">
-                        <div className="textAlign">
-                            <div className="name"> <b>Name : </b></div>
-                            <div className="name"> <b>User Name : </b></div>
-                            <div className="name"> <b>Phone No. : </b> </div>
-                            <div className="name"> <b>Email ID : </b></div>
-                            <div className="name"> <b>Company Name : </b> </div>
-                            <div className="website"><b>Website : </b> </div>
-                        </div>
-                        {editusers === 'editVal' && currentusers === item.id ?
-                            <div className="txtjustify">
-                                <div><input defaultValue={item.name} onChange={(event) => setnameUsers(event.target.value)} /></div>
-                                <div><input defaultValue={item.username} onChange={(event) => setusername(event.target.value)} /></div>
-                                <div><input defaultValue={item.phone} onChange={(event) => setphnumUsers(event.target.value)} /></div>
-                                <div><input defaultValue={item.email} onChange={(event) => setcompanynameUsers(event.target.value)} /></div>
-                                <div><input defaultValue={item.company.name} onChange={(event) => setmailidUsers(event.target.value)} /></div>
-                                <div><input defaultValue={item.website} onChange={(event) => setwebsiteUsers(event.target.value)} /></div>
-                            </div> :
-                            <div className="txtjustify">
-                                <div>{item.name}</div>
-                                <div>{item.username}</div>
-                                <div>{item.phone}</div>
-                                <div>{item.email}</div>
-                                <div>{item.company.name}</div>
-                                <div>{item.website}</div>
+                        <div className="textAlign display">
+                            
+                            <div style={{marginRight:'10px'}}>
+                            {/* name */}
+                            <div className="name display padding10"> <b className="marginRight">Name : </b>
+
+                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.name} onChange={(event) => setnameUsers(event.target.value)} /></div> : 
+                            <div>{item.name}</div> } 
+                            
                             </div>
-                        }
+                            {/* Username */}
+                            <div className="name display padding10"> <b className="marginRight">User Name : </b>
+
+                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.username} onChange={(event) => setusername(event.target.value)} /></div> : <div>{item.username}</div> } 
+
+                            </div>
+                            {/* phone number */}
+                            <div className="name display padding10"> <b className="marginRight">Phone No. : </b>
+                            
+                            
+                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.phone} onChange={(event) => setphnumUsers(event.target.value)} /></div> : <div className="txtWrap">{item.phone}</div> } 
+
+                            </div>
+                            </div>
+
+                            <div>
+                            {/* mail id */}
+                            <div className="name display padding10"> <b className="marginRight">Email ID : </b>
+                            
+                            
+                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.email} onChange={(event) => setcompanynameUsers(event.target.value)} /></div> : <div className="txtWrap">{item.email}</div> } 
+
+                            </div>
+                            {/* Company name */}
+                            <div className="name display padding10"> <b className="marginRight">Company Name : </b>
+
+                           
+                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.company.name} onChange={(event) => setmailidUsers(event.target.value)} /></div> : <div>{item.company.name}</div> } 
+
+                            </div>
+                            {/* website */}
+                            <div className="website display padding10"><b className="marginRight">Website : </b>
+                            
+                            
+                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.website} onChange={(event) => setwebsiteUsers(event.target.value)} /></div> : <div>{item.website}</div> } 
+
+                            </div>
+                            </div>
+                           
+                        </div>
+                       
                     </div>
 
-                    {editusers === 'editVal' && currentusers === item.id ? <button className="marginrgt10" onClick={(event) => { submitdata(item.id, item) }}>
+                    {editusers === 'editVal' && currentusers === item.id ? 
+                    <button className="marginrgt10 brnStyle submitClr" onClick={(event) => { submitdata(item.id, item) }}>
                         Submit
-                    </button> : <button className="marginrgt10" onClick={(event) => { editUser(item.id) }}>
+                    </button> : <button className="marginrgt10 brnStyle editClr" onClick={(event) => { editUser(item.id) }}>
                         Edit
                     </button>}
-                    <button onClick={(event) => { deleteUser(item.id) }}>
+                    <button className="brnStyle deleteClr"  onClick={(event) => { deleteUser(item.id) }}>
                         Delete
                     </button>
                 </div>
 
             )}
         </div>
+        
     </div>
 
 };
