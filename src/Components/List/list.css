@@ -1,11 +1,3 @@
-.user_container {
-    margin: 1rem 0;
-    padding: 1rem;
-    border: 2px solid #818589;
-    border-radius: 10px;
-    margin-left: 22%;
-    z-index: 10000 !important;
-}
 
 .user {
     margin: 1rem;
@@ -43,12 +35,9 @@
     color: white;
 }
 .createClr{
-    border: 2px solid #228b22;
-    background: white;
-    color: #228b22;
-    border-radius: 16px;
-    width: 4%;
-    font-size: 20px;
+    border: 2px solid #A7A6BA;
+    background: #A7A6BA;
+    color: white;
     margin-left: 13px;
 }
 .padding10{
@@ -83,6 +72,14 @@
     .cardWidth {
         width: 80%;
     }
+    .user_container {
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 2px solid #818589;
+        border-radius: 10px;
+        margin-left: 7%;
+        z-index: 10000 !important;
+    }
 }
 
 @media (min-width:481px) {
@@ -97,6 +94,14 @@
 
     .cardWidth {
         width: 80%;
+    }
+    .user_container {
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 2px solid #818589;
+        border-radius: 10px;
+        margin-left: 7%;
+        z-index: 10000 !important;
     }
 }
 
@@ -113,6 +118,14 @@
     .cardWidth {
         width: 80%;
     }
+    .user_container {
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 2px solid #818589;
+        border-radius: 10px;
+        margin-left: 7%;
+        z-index: 10000 !important;
+    }
 }
 
 @media (min-width:961px) {
@@ -128,6 +141,15 @@
     .cardWidth {
         width: 57%;
     }
+    .user_container {
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 2px solid #818589;
+        border-radius: 10px;
+        margin-left: 22%;
+        z-index: 10000 !important;
+    }
+    
 }
 
 @media (min-width:1025px) {
@@ -142,6 +164,15 @@
     .cardWidth{
         width: 57%;
     }
+    .user_container {
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 2px solid #818589;
+        border-radius: 10px;
+        margin-left: 22%;
+        z-index: 10000 !important;
+    }
+    
 }
 
 @media (min-width:1281px) {
@@ -156,4 +187,13 @@
     .cardWidth{
         width: 57%;
     }
+    .user_container {
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 2px solid #818589;
+        border-radius: 10px;
+        margin-left: 22%;
+        z-index: 10000 !important;
+    }
+    
 }

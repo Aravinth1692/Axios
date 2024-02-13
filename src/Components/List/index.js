@@ -125,7 +125,7 @@ const ListPage = () => {
         <div className="user_container cardWidth">
             <b>Total Users : </b> {users.length}
             <button className="brnStyle createClr" title="Create" onClick={(event) => { AddUser() }}>
-                        +
+                        Create
                     </button>
                     {/* create New User */}
                     { newusersEnable == true && 
