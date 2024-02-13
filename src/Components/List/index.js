@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUserDetails, updateUserDetails } from '../../Services/usingAxios';
+import { getUserDetails, updateUserDetails ,addUserDetails} from '../../Services/usingAxios';
 import './list.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,7 @@ const ListPage = () => {
     const [companynameusers, setcompanynameUsers] = useState([]);
     const [mailidusers, setmailidUsers] = useState([]);
     const [websiteusers, setwebsiteUsers] = useState([]);
-    // const [isModalOpen, setModalOpen] = useState(false);
+    const [newusersEnable, setnewusersEnable] = useState([]);
 
     const getallUserDetails = async () => {
         const userData = await getUserDetails();
@@ -24,11 +24,9 @@ const ListPage = () => {
         seteditUsers('editVal')
         setcurrentUsers(val)
     }
-    //   const closeModal = () => {
-    //     setModalOpen(false);
-    //   };
+    
     const notify = () => toast.error("Please Fill All Details");
-    const Successnotify = () => toast.success("Update SUccessfully");
+    const Successnotify = () => toast.success("Update Successfully");
     const submitdata = async (val, Data) => {
         if (nameusers === "" || username === "" || mailidusers === "" ||
             phnumusers === "" || websiteusers === "" || companynameusers === "") {
@@ -67,9 +65,48 @@ const ListPage = () => {
         }
 
     }
-    // const createUser = async () => {
-    //     setModalOpen(true);
-    // }
+    const AddUser = async () => {
+        setnewusersEnable(true)
+    }
+    const createUser = async () => {
+        if ((nameusers === "" || username === "" || mailidusers === "" ||
+            phnumusers === "" || websiteusers === "" || companynameusers === "") ||
+            (nameusers.length === 0 || username.length === 0 || mailidusers.length === 0 ||
+            phnumusers.length === 0 || websiteusers.length === 0 || companynameusers.length === 0)) {
+            notify();
+            return;
+        }
+        const ResData = await addUserDetails();
+        let newArray = [{
+            "id": ResData.data.id,
+            "name": nameusers,
+            "username": username,
+            "email": mailidusers,
+            "address": {
+              "street": "",
+              "suite": "",
+              "city": "",
+              "zipcode": "",
+              "geo": {
+                "lat": "",
+                "lng": ""
+              }
+            },
+            "phone": phnumusers,
+            "website": websiteusers,
+            "company": {
+              "name": companynameusers,
+              "catchPhrase": "",
+              "bs": ""
+            }
+          }]
+            const updatedList = [...users,...newArray]
+            setnewusersEnable(false)
+            seteditUsers('')
+            setUsers(updatedList)
+            Successnotify()
+    }
+
     const deleteUser = async (ID) => {
         const Deletedata = users.filter((val) => val.id !== ID)
         setUsers(Deletedata)
@@ -87,9 +124,53 @@ const ListPage = () => {
         <ToastContainer />
         <div className="user_container cardWidth">
             <b>Total Users : </b> {users.length}
-            {/* <button className="brnStyle createClr" title="Create" onClick={(event) => { createUser() }}>
+            <button className="brnStyle createClr" title="Create" onClick={(event) => { AddUser() }}>
                         +
-                    </button> */}
+                    </button>
+                    {/* create New User */}
+                    { newusersEnable == true && 
+                    <div className="user" >
+                    <div className="display">
+                        <div className="textAlign display">
+
+                            <div style={{ marginRight: '10px' }}>
+                                {/* name */}
+                                <div className="name display padding10"> <b className="marginRight">Name : </b>
+                                    <div><input onChange={(event) => setnameUsers(event.target.value)} /></div>
+                                </div>
+                                {/* Username */}
+                                <div className="name display padding10"> <b className="marginRight">User Name : </b>
+                                    <div><input onChange={(event) => setusername(event.target.value)}  /></div>
+                                </div>
+                                {/* phone number */}
+                                <div className="name display padding10"> <b className="marginRight">Phone No. : </b>
+                                    <div><input onChange={(event) => setphnumUsers(event.target.value)}  /></div>
+                                </div>
+                            </div>
+                            <div>
+                                {/* mail id */}
+                                <div className="name display padding10"> <b className="marginRight">Email ID : </b>
+                                    <div><input onChange={(event) => setcompanynameUsers(event.target.value)} /></div>
+                                </div>
+                                {/* Company name */}
+                                <div className="name display padding10"> <b className="marginRight">Company Name : </b>
+                                    <div><input onChange={(event) => setmailidUsers(event.target.value)}   /></div>
+                                </div>
+                                {/* website */}
+                                <div className="website display padding10"><b className="marginRight">Website : </b>
+                                    <div><input  onChange={(event) => setwebsiteUsers(event.target.value)}  /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button className="brnStyle createBtnCLr" onClick={(event) => { createUser() }}>
+                        Create
+                    </button>
+                </div>
+                }
+
+                {/* Exiting user */}
             {users.map((item, index) =>
                 <div className="user" key={index}>
                     <div className="display">

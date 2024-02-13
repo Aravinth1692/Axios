@@ -24,6 +24,11 @@
     background: #89CFF0;
     color: white;
 }
+.createBtnCLr{
+    border: 2px solid #FAA0A0;
+    background: white;
+    color: #FAA0A0;
+}
 .marginRight{
     margin-right: 10px;
 }
