@@ -30,11 +30,11 @@ const ListPage = () => {
     const notify = () => toast.error("Please Fill All Details");
     const Successnotify = () => toast.success("Update SUccessfully");
     const submitdata = async (val, Data) => {
-        if(nameusers === "" || username === "" || mailidusers === "" ||
-            phnumusers === "" || websiteusers === "" ||  companynameusers === "" ) {
-                notify();
-                return ;
-            }
+        if (nameusers === "" || username === "" || mailidusers === "" ||
+            phnumusers === "" || websiteusers === "" || companynameusers === "") {
+            notify();
+            return;
+        }
         const payload = {
             id: val,
             name: nameusers.length === 0 ? Data.name : nameusers,
@@ -70,8 +70,8 @@ const ListPage = () => {
     // const createUser = async () => {
     //     setModalOpen(true);
     // }
-    const deleteUser = async(ID) => {
-        const Deletedata = users.filter((val)=>val.id !== ID)
+    const deleteUser = async (ID) => {
+        const Deletedata = users.filter((val) => val.id !== ID)
         setUsers(Deletedata)
     }
 
@@ -84,7 +84,7 @@ const ListPage = () => {
     }, [users]);
 
     return <div>
- <ToastContainer />
+        <ToastContainer />
         <div className="user_container cardWidth">
             <b>Total Users : </b> {users.length}
             {/* <button className="brnStyle createClr" title="Create" onClick={(event) => { createUser() }}>
@@ -94,72 +94,72 @@ const ListPage = () => {
                 <div className="user" key={index}>
                     <div className="display">
                         <div className="textAlign display">
-                            
-                            <div style={{marginRight:'10px'}}>
-                            {/* name */}
-                            <div className="name display padding10"> <b className="marginRight">Name : </b>
 
-                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.name} onChange={(event) => setnameUsers(event.target.value)} /></div> : 
-                            <div>{item.name}</div> } 
-                            
-                            </div>
-                            {/* Username */}
-                            <div className="name display padding10"> <b className="marginRight">User Name : </b>
+                            <div style={{ marginRight: '10px' }}>
+                                {/* name */}
+                                <div className="name display padding10"> <b className="marginRight">Name : </b>
 
-                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.username} onChange={(event) => setusername(event.target.value)} /></div> : <div>{item.username}</div> } 
+                                    {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.name} onChange={(event) => setnameUsers(event.target.value)} /></div> :
+                                        <div>{item.name}</div>}
 
-                            </div>
-                            {/* phone number */}
-                            <div className="name display padding10"> <b className="marginRight">Phone No. : </b>
-                            
-                            
-                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.phone} onChange={(event) => setphnumUsers(event.target.value)} /></div> : <div className="txtWrap">{item.phone}</div> } 
+                                </div>
+                                {/* Username */}
+                                <div className="name display padding10"> <b className="marginRight">User Name : </b>
 
-                            </div>
+                                    {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.username} onChange={(event) => setusername(event.target.value)} /></div> : <div>{item.username}</div>}
+
+                                </div>
+                                {/* phone number */}
+                                <div className="name display padding10"> <b className="marginRight">Phone No. : </b>
+
+
+                                    {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.phone} onChange={(event) => setphnumUsers(event.target.value)} /></div> : <div className="txtWrap">{item.phone}</div>}
+
+                                </div>
                             </div>
 
                             <div>
-                            {/* mail id */}
-                            <div className="name display padding10"> <b className="marginRight">Email ID : </b>
-                            
-                            
-                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.email} onChange={(event) => setcompanynameUsers(event.target.value)} /></div> : <div className="txtWrap">{item.email}</div> } 
+                                {/* mail id */}
+                                <div className="name display padding10"> <b className="marginRight">Email ID : </b>
 
-                            </div>
-                            {/* Company name */}
-                            <div className="name display padding10"> <b className="marginRight">Company Name : </b>
 
-                           
-                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.company.name} onChange={(event) => setmailidUsers(event.target.value)} /></div> : <div>{item.company.name}</div> } 
+                                    {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.email} onChange={(event) => setcompanynameUsers(event.target.value)} /></div> : <div className="txtWrap">{item.email}</div>}
 
-                            </div>
-                            {/* website */}
-                            <div className="website display padding10"><b className="marginRight">Website : </b>
-                            
-                            
-                            {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.website} onChange={(event) => setwebsiteUsers(event.target.value)} /></div> : <div>{item.website}</div> } 
+                                </div>
+                                {/* Company name */}
+                                <div className="name display padding10"> <b className="marginRight">Company Name : </b>
 
+
+                                    {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.company.name} onChange={(event) => setmailidUsers(event.target.value)} /></div> : <div>{item.company.name}</div>}
+
+                                </div>
+                                {/* website */}
+                                <div className="website display padding10"><b className="marginRight">Website : </b>
+
+
+                                    {editusers === 'editVal' && currentusers === item.id ? <div><input defaultValue={item.website} onChange={(event) => setwebsiteUsers(event.target.value)} /></div> : <div>{item.website}</div>}
+
+                                </div>
                             </div>
-                            </div>
-                           
+
                         </div>
-                       
+
                     </div>
 
-                    {editusers === 'editVal' && currentusers === item.id ? 
-                    <button className="marginrgt10 brnStyle submitClr" onClick={(event) => { submitdata(item.id, item) }}>
-                        Submit
-                    </button> : <button className="marginrgt10 brnStyle editClr" onClick={(event) => { editUser(item.id) }}>
-                        Edit
-                    </button>}
-                    <button className="brnStyle deleteClr"  onClick={(event) => { deleteUser(item.id) }}>
+                    {editusers === 'editVal' && currentusers === item.id ?
+                        <button className="marginrgt10 brnStyle submitClr" onClick={(event) => { submitdata(item.id, item) }}>
+                            Submit
+                        </button> : <button className="marginrgt10 brnStyle editClr" onClick={(event) => { editUser(item.id) }}>
+                            Edit
+                        </button>}
+                    <button className="brnStyle deleteClr" onClick={(event) => { deleteUser(item.id) }}>
                         Delete
                     </button>
                 </div>
 
             )}
         </div>
-        
+
     </div>
 
 };
