@@ -14,7 +14,7 @@ const ListPage = () => {
     const [companynameusers, setcompanynameUsers] = useState([]);
     const [mailidusers, setmailidUsers] = useState([]);
     const [websiteusers, setwebsiteUsers] = useState([]);
-    const [isModalOpen, setModalOpen] = useState(false);
+    // const [isModalOpen, setModalOpen] = useState(false);
 
     const getallUserDetails = async () => {
         const userData = await getUserDetails();
@@ -24,9 +24,9 @@ const ListPage = () => {
         seteditUsers('editVal')
         setcurrentUsers(val)
     }
-      const closeModal = () => {
-        setModalOpen(false);
-      };
+    //   const closeModal = () => {
+    //     setModalOpen(false);
+    //   };
     const notify = () => toast.error("Please Fill All Details");
     const Successnotify = () => toast.success("Update SUccessfully");
     const submitdata = async (val, Data) => {
@@ -67,9 +67,9 @@ const ListPage = () => {
         }
 
     }
-    const createUser = async () => {
-        setModalOpen(true);
-    }
+    // const createUser = async () => {
+    //     setModalOpen(true);
+    // }
     const deleteUser = async(ID) => {
         const Deletedata = users.filter((val)=>val.id !== ID)
         setUsers(Deletedata)
