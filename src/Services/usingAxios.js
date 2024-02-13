@@ -24,7 +24,7 @@ export const updateUserDetails = async(userID,payload) =>{
     //     body:JSON.stringify(payload),
     // });
     // const getData = getAPI.json();
-    const getData = await axios.delete(`${BASE_URL}/users/${userID}`,payload);
+    const getData = await axios.put(`${BASE_URL}/posts/${userID}`,payload);
     return getData;
 }
 

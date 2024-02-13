@@ -17,3 +17,16 @@
 .stickey{
     position: sticky;
 }
+.marginrgt10{
+    margin-right: 10px;
+}
+.display{
+    display: flex;
+    flex-direction: row;
+}
+.textAlign{
+text-align: end;
+}
+.txtjustify{
+    text-align: justify;
+}
