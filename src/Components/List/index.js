@@ -20,16 +20,32 @@ const ListPage = () => {
         const userData = await getUserDetails();
         setUsers(userData.data)
     };
-    const editUser = async (val) => {
+    const editUser = async (val,item) => {
         seteditUsers('editVal')
         setcurrentUsers(val)
+        setnameUsers(item.name)
+        setphnumUsers(item.phone)
+        setusername(item.username)
+        setcompanynameUsers(item.company.name)
+        setmailidUsers(item.email)
+        setwebsiteUsers(item.website)
+        setnewusersEnable(false)
     }
-    
+    const deleteNewUser = async()=>{
+        setnewusersEnable(false)
+        setnameUsers('')
+        setphnumUsers('')
+        setusername('')
+        setcompanynameUsers('')
+        setmailidUsers('')
+        setwebsiteUsers('')
+        seteditUsers('')
+    }
     const notify = () => toast.error("Please Fill All Details");
     const Successnotify = () => toast.success("Update Successfully");
     const submitdata = async (val, Data) => {
         if (nameusers === "" || username === "" || mailidusers === "" ||
-            phnumusers === "" || websiteusers === "" || companynameusers === "") {
+            phnumusers === "" || websiteusers === "" || companynameusers === "")  {
             notify();
             return;
         }
@@ -46,29 +62,29 @@ const ListPage = () => {
         }
         const response = await updateUserDetails(val, payload)
         if (response.status === 200) {
-            const updatedList = users.map(item => {
-                if (item.id === val) {
-                    return {
-                        ...item, name: nameusers.length === 0 ? Data.name : nameusers,
-                        username: username.length === 0 ? Data.username : username,
-                        email: mailidusers.length === 0 ? Data.email : mailidusers, phone: phnumusers.length === 0 ? Data.phone : phnumusers,
-                        website: websiteusers.length === 0 ? Data.website : websiteusers, company: {
-                            name: companynameusers.length === 0 ? Data.company.name : companynameusers
-                        }
+        const updatedList = users.map(item => {
+        if (item.id === val) {
+        return {
+        ...item, name: nameusers.length === 0 ? Data.name : nameusers,
+        username: username.length === 0 ? Data.username : username,
+        email: mailidusers.length === 0 ? Data.email : mailidusers, phone: phnumusers.length === 0 ? Data.phone : phnumusers,
+        website: websiteusers.length === 0 ? Data.website : websiteusers, company: {
+        name: companynameusers.length === 0 ? Data.company.name : companynameusers
+        }
                     };
-                }
+        }
                 return item;
-            });
-            seteditUsers('')
-            setUsers(updatedList)
-            Successnotify()
+        });
+        seteditUsers('')
+        setUsers(updatedList)
+        Successnotify()
         }
 
     }
     const AddUser = async () => {
         setnewusersEnable(true)
     }
-    const createUser = async () => {
+        const createUser = async () => {
         if ((nameusers === "" || username === "" || mailidusers === "" ||
             phnumusers === "" || websiteusers === "" || companynameusers === "") ||
             (nameusers.length === 0 || username.length === 0 || mailidusers.length === 0 ||
@@ -128,7 +144,7 @@ const ListPage = () => {
                         Create
                     </button>
                     {/* create New User */}
-                    { newusersEnable == true && 
+                    { newusersEnable === true && 
                     <div className="user" >
                     <div className="display">
                         <div className="textAlign display">
@@ -164,9 +180,13 @@ const ListPage = () => {
                         </div>
                     </div>
 
-                    <button className="brnStyle createBtnCLr" onClick={(event) => { createUser() }}>
+                    <button className="brnStyle marginrgt10 createBtnCLr" onClick={(event) => { createUser() }}>
                         Create
                     </button>
+                    <button className="brnStyle deleteClr" onClick={(event) => { deleteNewUser() }}>
+                        Delete
+                    </button>
+
                 </div>
                 }
 
@@ -230,7 +250,7 @@ const ListPage = () => {
                     {editusers === 'editVal' && currentusers === item.id ?
                         <button className="marginrgt10 brnStyle submitClr" onClick={(event) => { submitdata(item.id, item) }}>
                             Submit
-                        </button> : <button className="marginrgt10 brnStyle editClr" onClick={(event) => { editUser(item.id) }}>
+                        </button> : <button className="marginrgt10 brnStyle editClr" onClick={(event) => { editUser(item.id,item) }}>
                             Edit
                         </button>}
                     <button className="brnStyle deleteClr" onClick={(event) => { deleteUser(item.id) }}>
